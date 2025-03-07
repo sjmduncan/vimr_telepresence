@@ -1,0 +1,22 @@
+@echo off
+cls
+set PROJECT_NAME=VIMR_UE5_EXAMPLE
+set UE5_PROJECT=%CD%\%PROJECT_NAME%.uproject
+set UE5_START_MAP=/VIMRUE5/Telepresence/WaitingMap.umap
+set UE_STANDALONE_MAP=/VIMRUE5/Telepresence/MainMap.umap
+set VNET_PORT=12005
+set VNET_HOSTNAME=localhost
+set VNET_LAN=-VNetLAN
+:: To use a fixed IP address, un-comment the following line (the hostname will be ignored)
+::set VNET_ADDRESS=192.168.0.2
+
+:: Make sure stuff above this line points to valid VIMR instance and UE5.3 installation
+:: Don't change stuff below this line
+IF NOT "%VNET_ADDRESS%"=="" GOTO SKIPLOOKUP
+
+for /f "tokens=1,2 delims=[]" %%A in ('ping -4 %VNET_HOSTNAME% ^| find "Pinging"') do set VNET_ADDRESS=%%B
+
+GOTO SKIPLOOKUP	
+
+:SKIPLOOKUP
+echo %VNET_ADDRESS%

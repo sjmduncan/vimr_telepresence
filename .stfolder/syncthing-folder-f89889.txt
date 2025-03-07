@@ -1,0 +1,5 @@
+# This directory is a Syncthing folder marker.
+# Do not delete.
+
+folderID: vimr_telepresence
+created: 2025-03-07T15:42:08+13:00

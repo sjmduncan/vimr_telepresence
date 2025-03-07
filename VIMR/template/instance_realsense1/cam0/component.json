@@ -1,0 +1,5 @@
+{
+    "Version":0.9,
+    "ComponentID": "Cam0",
+    "InstanceConfig":"../instance.json"
+}

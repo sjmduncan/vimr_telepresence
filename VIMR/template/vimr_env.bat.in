@@ -1,0 +1,42 @@
+@echo off
+cls
+set UE5_ROOT=C:\Program Files\Epic Games\UE_5.3
+set INSTANCE_ROOT=%~dp0\instance\
+
+set VIMR_ROOT=%~dp0\bin\
+:: Make sure stuff above this line points to valid VIMR instance and 5.3 installation
+:: Don't change stuff below this line
+
+set INSTANCE_CONFIG_FILE=%INSTANCE_ROOT%\instance.json
+set UE5_EDITOR_EXE=%UE5_ROOT%\Engine\Binaries\Win64\UnrealEditor.exe
+set status = "OK"
+
+if exist "%VIMR_ROOT%" (
+  echo Using VIMR installation from VIMR_ROOT=%VIMR_ROOT%
+) else (
+  echo VIMR_ROOT=%VIMR_ROOT% folder does not exist.
+  set status="NOK"
+)
+
+if exist "%UE5_ROOT%" (
+  echo Using UE5 installation from %UE5_ROOT%
+) else (
+  echo UE5_ROOT=%UE5_ROOT% folder does not exist.
+  echo Check that:
+  echo     1. Unreal Engine 5.3 is installed on your system
+  echo     2. Check the value of UE5_ROOT in vimr_env.bat points to the installations U_E5.3 folder
+  set status="NOK"
+)
+
+if exist "%INSTANCE_ROOT%" (
+  echo Using VIMR instance in %INSTANCE_ROOT%
+  echo using VIMR instance config at %INSTANCE_CONFIG_FILE%
+) else (
+  echo INSTANCE_ROOT=%INSTANCE_ROOT% folder does not exist.
+  echo Please check that the value of INSTANCE_ROOT in %~dp0/vimr_env.bat points to a valid VIMR instance
+  set status="NOK"
+)
+
+if "%status%"=="NOK" (
+  cmd /k
+)

@@ -1,0 +1,86 @@
+{
+  "Version": 0.9,
+  "InstanceID": "iTest",
+  "Components": {
+    "Cam0": {
+      "CamType": "RealSense",
+      "PerfOutput": "Print",
+      "Idx": 0,
+      "Connections": [
+        { "PeerID": "VoxControl", "Type": "Control" },
+        { "PeerID": "VoxMerge", "Type": "VoxOut" }],
+      "RealSense": {
+        "Serial": "",
+        "ColorExposure": -1,
+        "ColorGain": -1,
+        "ColorBalance": -1,
+        "DepthExposure": -1,
+        "DepthGain": -1,
+        "LaserPercent": 100,
+        "Sync": "Master",
+        "ImageResolution": [424,240]
+      },
+      "RangeLimits_m" : [0.5, 3.0]
+    },
+    "VoxMerge": {
+      "Connections": [
+        { "PeerID": "VoxControl", "Type": "Control" }
+      ],
+      "PerfOutput": "Print",
+      "ShowSpecial": false,
+      "ShowInvisible": false,
+      "TSDFFusion": {
+        "Enabled": true,
+        "Trunc": 8,
+        "TrimThresh": 0.88
+      },
+      "Recording": {
+        "Enabled": true,
+        "MicRegex": "Microsoft Sound Mapper - Input",
+        "FileBaseName": "voxvid"
+      },
+      "VoxEncoding": "Default0"
+    },
+    "VoxControl": {
+      "HTTPPort": 8002,
+      "LoopbackOnly": true
+    },
+    "VNet": {
+      "Addr": "127.0.0.1:12001",
+      "LAN": true
+    },
+    "VNetExt": {
+      "Addr": "127.0.0.1:12001",
+      "LAN": false
+    }
+  },
+  "VoxEncoding":{
+    "WithLabel" : false,
+    "WithMetadata" : true,
+    "CompressColour": false,
+    "Voxmm" : 16,
+    "TargetFPS": 30
+  },
+  "Body" :{
+    "BodyOnly" : true
+  },
+  "SpaceLimits": {
+    "Enabled" : true,
+    "Max_m": [ 1.28,  1.28, 2.56],
+    "Min_m": [-1.28, -1.28, 0.0]
+  },
+  "Checkerboard": {
+    "X": 10,
+    "Y": 7,
+    "SquareEdge_m": 0.0685,
+    "TransFromOrigin_m": [0, 0, 0],
+    "SwapXZ": true
+  },
+  "GreenScreen": {
+    "Enabled" : true,
+    "HueRange": [70, 90]
+  },
+  "Sagittal":{
+    "Enabled": false
+  }
+}

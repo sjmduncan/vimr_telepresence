@@ -1,0 +1,53 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "0.1",
+	"FriendlyName": "VIMRUE5",
+	"Description": "Interface for Voxel-based Immersive Mixed Reality (version 0.9, Unreal Engine 5)",
+	"Category": "Other",
+	"CreatedBy": "Stuart Duncan",
+	"CreatedByURL": "",
+	"DocsURL": "",
+	"MarketplaceURL": "",
+	"SupportURL": "",
+	"CanContainContent": true,
+	"IsBetaVersion": true,
+	"IsExperimentalVersion": false,
+	"Installed": false,
+	"Modules": [
+		{
+			"Name": "VIMRUE5",
+			"Type": "Runtime",
+			"LoadingPhase": "PreDefault"
+		}
+	],
+	"Plugins": [
+		{
+			"Name": "ResonanceAudio",
+			"Enabled": true
+		},
+		{
+			"Name": "OpenXR",
+			"Enabled": true,
+			"SupportedTargetPlatforms": [
+				"Win64"
+			]
+		},
+		{
+			"Name": "OnlineSubsystem",
+			"Enabled": true
+		},
+		{
+			"Name": "OnlineSubsystemSteam",
+			"Enabled": true
+		}
+	],
+	"PreBuildSteps":
+	{
+		"Win64": [
+			"IF NOT EXIST \"$(PluginDir)\\Binaries\\$(TargetPlatform)\\\" md \"$(PluginDir)\\Binaries\\$(TargetPlatform)\\\"",
+			"IF NOT EXIST \"$(PluginDir)\\Binaries\\$(TargetPlatform)\\vimr.dll\" copy /y \"$(ProjectDir)\\VIMR\\lib\\bin\\vimr.dll\" \"$(PluginDir)\\Binaries\\$(TargetPlatform)\\\"",
+			"IF NOT EXIST \"$(PluginDir)\\Binaries\\$(TargetPlatform)\\vimr.lib\" copy /y \"$(ProjectDir)\\VIMR\\lib\\lib\\vimr.lib\" \"$(PluginDir)\\Binaries\\$(TargetPlatform)\\\""
+		]
+	}
+}
